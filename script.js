@@ -150,6 +150,32 @@ document.querySelectorAll('a[href="#"]').forEach(link => {
     });
 });
 
+// Resume Dropdown Functionality
+const resumeBtn = document.getElementById('resumeBtn');
+const resumeDropdown = document.getElementById('resumeDropdown');
+
+if (resumeBtn && resumeDropdown) {
+    resumeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        resumeDropdown.classList.toggle('show');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!resumeBtn.contains(e.target) && !resumeDropdown.contains(e.target)) {
+            resumeDropdown.classList.remove('show');
+        }
+    });
+
+    // Close dropdown when clicking on a resume link
+    const resumeLinks = document.querySelectorAll('.resume-link');
+    resumeLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            resumeDropdown.classList.remove('show');
+        });
+    });
+}
+
 // Add loading state management
 document.addEventListener('DOMContentLoaded', () => {
     // All scripts are loaded
